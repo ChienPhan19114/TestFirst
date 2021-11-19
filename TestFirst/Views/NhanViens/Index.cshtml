@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TestFirst.Models.NhanVien>
+
+
+
+@{
+    ViewData["Title"] = "DANH SÁCH NHÂN VIÊN";
+}
+
+<h1>DANH SÁCH NHÂN VIÊN</h1>
+@await Html.PartialAsync("_CreatePartial", new NhanVien())
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenNV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GioiTinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgaySinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaNV" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaNV" class="btn btn-info btn-sm">Details</a> |
+
+                    @await Html.PartialAsync("_DeletePartial", new NhanVien())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

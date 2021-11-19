@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TestFirst.Models.KhachHang>
+
+@{
+    ViewData["Title"] = "DANH SÁCH KHÁCH HÀNG";
+}
+
+<h1>DANH SÁCH KHÁCH HÀNG</h1>
+@await Html.PartialAsync("_CreatePartial", new KhachHang())
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTenKH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTenKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaKH" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaKH" class="btn btn-info btn-sm">Details</a> |
+                    @await Html.PartialAsync("_DeletePartial", new KhachHang())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

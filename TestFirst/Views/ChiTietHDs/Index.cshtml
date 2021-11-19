@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TestFirst.Models.ChiTietHD>
+
+@{
+    ViewData["Title"] = "CHI TIẾT HÓA ĐƠN";
+}
+
+<h1>CHI TIẾT HÓA ĐƠN</h1>
+@await Html.PartialAsync("_CreatePartial", new ChiTietHD())
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaSP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaHD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.SoLuong" class="btn btn-warning btn-sm">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.SoLuong" class="btn btn-info btn-sm">Details</a> |
+                    @await Html.PartialAsync("_DeletePartial", new ChiTietHD())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
